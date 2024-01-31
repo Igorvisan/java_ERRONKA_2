@@ -1,6 +1,11 @@
 package secondlife_App;
 
-public class Biltegia {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import javax.swing.JOptionPane;
+
+public class Produktoa {
 	
 	private String produktua;
 	private double prezioa;
@@ -12,6 +17,7 @@ public class Biltegia {
 	private String deskribapena;
 	private String irudiak;
 	private boolean tendentziak;
+	private static ConnectionDB connectionDB;
 	
 	
 	public String getProduktua() {
@@ -75,11 +81,11 @@ public class Biltegia {
 		this.tendentziak = tendentziak;
 	}
 	
-	public Biltegia() {
+	public Produktoa() {
 		
 	}
 	
-	public Biltegia(String produktua, double prezioa, String marca, boolean stock, int stockKantitatea,
+	public Produktoa(String produktua, double prezioa, String marca, boolean stock, int stockKantitatea,
 			double produktuaren_KG, double iritzia, String deskribapena, String irudiak, boolean tendentziak) {
 		super();
 		this.produktua = produktua;
@@ -101,6 +107,38 @@ public class Biltegia {
 				+ "]";
 	}
 	
-	
-
+	public void guardarProducto() {
+		Connection conexion = connectionDB.obtenerConexion();
+		System.out.println("Inserte los datos para añadir un nuevo producto ");
+		
+		String orden = "INSERT INTO second_life.biltegia (Produktua, Prezioa, Marca, Stock, Stock_kantitatea, Produktuaren_KG, Iritzia, Deskribapena, imagenes, tendencia) " +
+		"VALUES (?, ?, ?, true, ?, ?, ?, ?, ?, false)";
+		
+		try(PreparedStatement statement = conexion.prepareStatement(orden)){
+			
+			
+			statement.setString(1, this.getProduktua());
+			statement.setDouble(2, this.getPrezioa());
+			statement.setString(3, this.getMarca());
+			statement.setInt(5, this.getStockKantitatea());
+			statement.setDouble(6, this.getProduktuaren_KG());
+			statement.setDouble(7, this.getIritzia());
+			statement.setString(8, this.getDeskribapena());
+			statement.setString(9, this.getIrudiak());
+			statement.setBoolean(10, this.isTendentziak());
+			
+			if(statement.execute() == false) {
+				JOptionPane.showMessageDialog(null, "Ha ocurrido un error a la hora de insertar");
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conexion.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

@@ -23,7 +23,7 @@ public class Langileak extends Usuarioak {
 	private boolean balidazionAdministrazioa;
 	private boolean langileArduradunak;
 	private static ConnectionDB connectionDB;
-	private static Biltegia biltegia;
+	private static Produktoa biltegia;
 	public static final Scanner sc = new Scanner(System.in);
 	private String jaiotzeData;
 	private String contraseña;
@@ -34,7 +34,7 @@ public class Langileak extends Usuarioak {
         this.connectionDB = new ConnectionDB();
 
         // Creación de una nueva instancia de la clase Biltegia y asignación a la variable "biltegia"
-        this.biltegia = new Biltegia();
+        this.biltegia = new Produktoa();
     }
 
 	public String getJaiotzeData() {
@@ -96,53 +96,22 @@ public class Langileak extends Usuarioak {
 	public void añadirProducto(String produktoa, double prezioa, String marca, boolean stock, int stockKantitatea, double produktuaren_KG, double iritzia, String deskribapena
 			, String irudiak, boolean tendentziak) {
 		
-		biltegia.getProduktua();
-		biltegia.getPrezioa();
-		biltegia.getMarca();
-		biltegia.isStock();
-		biltegia.getStockKantitatea();
-		biltegia.getProduktuaren_KG();
-		biltegia.getIritzia();
-		biltegia.getDeskribapena();
-		biltegia.getIrudiak();
-		biltegia.isTendentziak();
+		Produktoa newProduct = new Produktoa();
 		
-	}
-	
-	public void guardarProducto() {
-		Connection conexion = connectionDB.obtenerConexion();
-		System.out.println("Inserte los datos para añadir un nuevo producto ");
+		newProduct.setProduktua(produktoa);
+		newProduct.setPrezioa(prezioa);
+		newProduct.setMarca(marca);
+		newProduct.setStock(true);
+		newProduct.setStockKantitatea(stockKantitatea);
+		newProduct.setProduktuaren_KG(produktuaren_KG);
+		newProduct.setIritzia(iritzia);
+		newProduct.setDeskribapena(deskribapena);
+		newProduct.setIrudiak(irudiak);
+		newProduct.setTendentziak(false);
 		
-		String orden = "INSERT INTO second_life.biltegia (Produktua, Prezioa, Marca, Stock, Stock_kantitatea, Produktuaren_KG, Iritzia, Deskribapena, imagenes, tendencia) " +
-		"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		newProduct.guardarProducto();
 		
-		try(PreparedStatement statement = conexion.prepareStatement(orden)){
-			
-			
-			statement.setString(1, biltegia.getProduktua());
-			statement.setDouble(2, biltegia.getPrezioa());
-			statement.setString(3, biltegia.getMarca());
-			statement.setBoolean(4, biltegia.isStock());
-			statement.setInt(5, biltegia.getStockKantitatea());
-			statement.setDouble(6, biltegia.getProduktuaren_KG());
-			statement.setDouble(7, biltegia.getIritzia());
-			statement.setString(8, biltegia.getDeskribapena());
-			statement.setString(9, biltegia.getIrudiak());
-			statement.setBoolean(10, biltegia.isTendentziak());
-			
-			if(statement.execute() == false) {
-				JOptionPane.showMessageDialog(null, "Ha ocurrido un error a la hora de insertar");
-			}
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				conexion.close();
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
+		
 	}
 	
 	
