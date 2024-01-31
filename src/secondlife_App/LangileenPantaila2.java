@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LangileenPantaila2 extends JFrame {
 
@@ -44,7 +46,36 @@ public class LangileenPantaila2 extends JFrame {
 		
 		JButton btnProcesatu = new JButton("ESKAERAK PROCESATU");
 		btnProcesatu.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnProcesatu.setBounds(349, 313, 297, 106);
+		btnProcesatu.setBounds(110, 309, 297, 106);
 		contentPane.add(btnProcesatu);
+		
+		JButton btnAgregarProducto = new JButton("AGREGAR PRODUCTO");
+		btnAgregarProducto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AgregarProducto addProduct = new AgregarProducto();
+				
+				addProduct.setVisible(true);
+				
+				dispose();
+			}
+		});
+		btnAgregarProducto.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnAgregarProducto.setBounds(560, 309, 297, 106);
+		contentPane.add(btnAgregarProducto);
+		
+		JButton btnGoBack = new JButton("VOLVER");
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				InicioSesion inicio = new InicioSesion();
+				
+				inicio.setVisible(true);
+				
+				dispose();
+			}
+		});
+		btnGoBack.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnGoBack.setBounds(775, 646, 196, 48);
+		contentPane.add(btnGoBack);
 	}
 }

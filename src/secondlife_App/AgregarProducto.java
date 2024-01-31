@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AgregarProducto extends JFrame {
 
@@ -32,11 +36,26 @@ public class AgregarProducto extends JFrame {
 	 */
 	public AgregarProducto() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 1023, 758);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnGoBack = new JButton("VOLVER");
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LangileenPantaila2 langile2 = new LangileenPantaila2();
+				
+				langile2.setVisible(true);
+				
+				dispose();
+			}
+		});
+		btnGoBack.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnGoBack.setBounds(819, 657, 180, 54);
+		contentPane.add(btnGoBack);
 	}
 
 }
