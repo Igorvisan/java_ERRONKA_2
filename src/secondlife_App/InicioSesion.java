@@ -44,7 +44,7 @@ public class InicioSesion extends JFrame {
 	 */
 	public InicioSesion() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 619, 429);
+		setBounds(100, 100, 647, 457);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -65,7 +65,8 @@ public class InicioSesion extends JFrame {
 		JButton btnIniciarSesion = new JButton("LOG IN");
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LangileenPantaila langile = new LangileenPantaila();
+				LangileenPantaila1 langile1 = new LangileenPantaila1();
+				LangileenPantaila2 langile2 = new LangileenPantaila2();
 				String usuario = txtUsuario.getText();
 				@SuppressWarnings("deprecation")
 				String contraseña = txtPassword.getText();
@@ -73,22 +74,26 @@ public class InicioSesion extends JFrame {
 				Langileak.confirmarAdmistrador(usuario, contraseña);
 				Langileak.confirmarEmpleadoNormal(usuario, contraseña);
 				
-				if(Langileak.confirmarLangileArduraduna(usuario, contraseña)) {
+				if(Langileak.confirmarEmpleadoNormal(usuario, contraseña)) {
 					
-					langile.setVisible(true);
+					langile2.setVisible(true);
 					
 					dispose();
 					
 				}
 				
-				else if(Langileak.confirmarLangileArduraduna(usuario, contraseña) == false) {
+				else if(Langileak.confirmarEmpleadoNormal(usuario, contraseña) == false) {
 					JOptionPane.showMessageDialog(null, "Las creedenciales no son validas");
 				}
+				
 				if(Langileak.confirmarAdmistrador(usuario, contraseña)) {
 					
-					langile.setVisible(true);
+					langile1.setVisible(true);
 					
 					dispose();
+				}
+				else if(Langileak.confirmarAdmistrador(usuario, contraseña) == false) {
+					JOptionPane.showMessageDialog(null, "Las creedenciales no son validas");
 				}
 				
 				

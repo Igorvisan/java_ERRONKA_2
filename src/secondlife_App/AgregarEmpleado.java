@@ -91,7 +91,7 @@ public class AgregarEmpleado extends JFrame {
 		btnGoBack.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LangileenPantaila langile = new LangileenPantaila();
+				LangileenPantaila1 langile = new LangileenPantaila1();
 				
 				langile.setVisible(true);
 				
@@ -102,6 +102,10 @@ public class AgregarEmpleado extends JFrame {
 		btnGoBack.setBounds(561, 426, 116, 39);
 		contentPane.add(btnGoBack);
 		
+		JCheckBox chckbxLangileNormala = new JCheckBox("Langile Normala?");
+		chckbxLangileNormala.setBounds(51, 468, 121, 21);
+		contentPane.add(chckbxLangileNormala);
+		
 		JCheckBox chckbxLangileArduraduna = new JCheckBox("Langile Aruraduna?");
 		chckbxLangileArduraduna.setBounds(51, 404, 134, 21);
 		chckbxLangileArduraduna.isSelected();
@@ -110,6 +114,50 @@ public class AgregarEmpleado extends JFrame {
 		JCheckBox chckbxAdministratzailea = new JCheckBox("Administratzailea?");
 		chckbxAdministratzailea.setBounds(51, 437, 134, 21);
 		contentPane.add(chckbxAdministratzailea);
+		
+		JButton btnShowTable = new JButton("Display Data");
+		btnShowTable.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
+				ConnectionDB connectionDB = new ConnectionDB();	
+				Connection conexion = connectionDB.obtenerConexion();
+				
+				String orden = "SELECT * FROM second_life.langileak";
+				
+				DefaultTableModel model =new DefaultTableModel();
+				
+				model.addColumn("Id_Langilea");
+				model.addColumn("NAN");
+				model.addColumn("Izena");
+				model.addColumn("Abizena");
+				model.addColumn("Korreoa");
+				model.addColumn("Jaiotze data");
+				model.addColumn("Telofono Zenbakia");
+				model.addColumn("Langile arduraduna");
+				model.addColumn("Administratzailea");
+				model.addColumn("langile_normala");
+				model.addColumn("password");
+
+				
+				tableLangileak.setModel(model);
+				String[] array = new String[11];
+				
+				try {
+					
+					PreparedStatement statement = conexion.prepareStatement(orden);
+					ResultSet resultado = statement.executeQuery(orden);
+					
+					while(resultado.next()) {
+						for (int i = 0; i<11; i++) {
+							array[i] = resultado.getString(i+1); // No existe la posicion 0
+						}
+						model.addRow(array);						
+					}
+					
+				}catch(Exception error) {
+					error.printStackTrace();
+				}
+			}
+		});
 		
 		JButton btnAddWorker = new JButton("AGREGAR");
 		btnAddWorker.addActionListener(new ActionListener() {
@@ -121,8 +169,18 @@ public class AgregarEmpleado extends JFrame {
 				
 				
 				addWorker.añadirNuevoTrabajador(txtNan.getText(), txtIzena.getText(), txtAbizena.getText(),
-						txtEmaila.getText(), txtJaiotzeData.getText(),chckbxLangileArduraduna.isSelected(),chckbxAdministratzailea.isSelected(), txtTelefonoa.getText(), txtPasswd.getText() );
+						txtEmaila.getText(), txtJaiotzeData.getText(),chckbxLangileArduraduna.isSelected(),chckbxAdministratzailea.isSelected(), txtTelefonoa.getText(), txtPasswd.getText(), chckbxLangileNormala.isSelected());
 				addWorker.guardar();
+				
+				btnShowTable.doClick();
+				txtNan.setText("");
+				txtIzena.setText("");
+				txtAbizena.setText("");
+				txtEmaila.setText("");
+				txtJaiotzeData.setText("");
+				txtTelefonoa.setText("");
+				txtPasswd.setText("");				
+				
 			}
 		});
 		btnAddWorker.setBounds(67, 29, 105, 30);
@@ -163,48 +221,7 @@ public class AgregarEmpleado extends JFrame {
 		lblTelefonoZenbakia.setBounds(81, 286, 91, 13);
 		contentPane.add(lblTelefonoZenbakia);
 		
-		JButton btnShowTable = new JButton("Display Data");
-		btnShowTable.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {				
-				ConnectionDB connectionDB = new ConnectionDB();	
-				Connection conexion = connectionDB.obtenerConexion();
-				
-				String orden = "SELECT * FROM second_life.langileak";
-				
-				DefaultTableModel model =new DefaultTableModel();
-				
-				model.addColumn("Id_Langilea");
-				model.addColumn("NAN");
-				model.addColumn("Izena");
-				model.addColumn("Abizena");
-				model.addColumn("Korreoa");
-				model.addColumn("Jaiotze data");
-				model.addColumn("Telofono Zenbakia");
-				model.addColumn("Langile arduraduna");
-				model.addColumn("Administratzailea");
-				model.addColumn("password");
-				
-				tableLangileak.setModel(model);
-				String[] array = new String[10];
-				
-				try {
-					
-					PreparedStatement statement = conexion.prepareStatement(orden);
-					ResultSet resultado = statement.executeQuery(orden);
-					
-					while(resultado.next()) {
-						for (int i = 0; i<10; i++) {
-							array[i] = resultado.getString(i+1); // No existe la posicion 0
-						}
-						model.addRow(array);
-						
-					}
-					
-				}catch(Exception error) {
-					error.printStackTrace();
-				}
-			}
-		});
+		
 		btnShowTable.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnShowTable.setBounds(412, 16, 134, 40);
 		contentPane.add(btnShowTable);
@@ -214,7 +231,7 @@ public class AgregarEmpleado extends JFrame {
 		contentPane.add(scrollPane);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(244, 57, 448, 301);
+		scrollPane_1.setBounds(218, 89, 479, 301);
 		contentPane.add(scrollPane_1);
 		
 		tableLangileak = new JTable();
@@ -229,6 +246,8 @@ public class AgregarEmpleado extends JFrame {
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword.setBounds(81, 331, 78, 13);
 		contentPane.add(lblPassword);
+		
+
 		
 
 	}

@@ -10,7 +10,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class LangileenPantaila extends JFrame {
+public class LangileenPantaila1 extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -22,7 +22,7 @@ public class LangileenPantaila extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LangileenPantaila frame = new LangileenPantaila();
+					LangileenPantaila1 frame = new LangileenPantaila1();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +34,7 @@ public class LangileenPantaila extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LangileenPantaila() {
+	public LangileenPantaila1() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 697, 521);
 		contentPane = new JPanel();
@@ -75,7 +75,11 @@ public class LangileenPantaila extends JFrame {
 		JButton btnBorrarEmpleado = new JButton("ELIMINAR EMPLEADO");
 		btnBorrarEmpleado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-								
+				EliminarEmpleado deleteWorker = new EliminarEmpleado();
+				
+				deleteWorker.setVisible(true);
+				
+				dispose();
 			}
 		});
 		btnBorrarEmpleado.setFont(new Font("Tahoma", Font.PLAIN, 18));
