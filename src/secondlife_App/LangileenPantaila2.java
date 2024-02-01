@@ -46,7 +46,7 @@ public class LangileenPantaila2 extends JFrame {
 		
 		JButton btnProcesatu = new JButton("ESKAERAK PROCESATU");
 		btnProcesatu.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnProcesatu.setBounds(110, 309, 297, 106);
+		btnProcesatu.setBounds(112, 131, 297, 106);
 		contentPane.add(btnProcesatu);
 		
 		JButton btnAgregarProducto = new JButton("AGREGAR PRODUCTO");
@@ -60,7 +60,7 @@ public class LangileenPantaila2 extends JFrame {
 			}
 		});
 		btnAgregarProducto.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnAgregarProducto.setBounds(560, 309, 297, 106);
+		btnAgregarProducto.setBounds(560, 131, 297, 106);
 		contentPane.add(btnAgregarProducto);
 		
 		JButton btnGoBack = new JButton("VOLVER");
@@ -77,5 +77,19 @@ public class LangileenPantaila2 extends JFrame {
 		btnGoBack.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnGoBack.setBounds(775, 646, 196, 48);
 		contentPane.add(btnGoBack);
+		
+		JButton btnModificatu = new JButton("PRODUKTUAK MODIFICATU");
+		btnModificatu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ModificarProducto modifyProduct = new ModificarProducto();
+				
+				modifyProduct.setVisible(true);
+				
+				dispose();
+			}
+		});
+		btnModificatu.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnModificatu.setBounds(336, 284, 297, 106);
+		contentPane.add(btnModificatu);
 	}
 }

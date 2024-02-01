@@ -93,27 +93,20 @@ public class Langileak extends Usuarioak {
 		this.langileNormala = langileNormala;
 	}
 	
-	public void añadirProducto(String produktoa, double prezioa, String marca, boolean stock, int stockKantitatea, double produktuaren_KG, double iritzia, String deskribapena
-			, String irudiak, boolean tendentziak) {
-		
-		Produktoa newProduct = new Produktoa();
-		
-		newProduct.setProduktua(produktoa);
-		newProduct.setPrezioa(prezioa);
-		newProduct.setMarca(marca);
-		newProduct.setStock(true);
-		newProduct.setStockKantitatea(stockKantitatea);
-		newProduct.setProduktuaren_KG(produktuaren_KG);
-		newProduct.setIritzia(iritzia);
-		newProduct.setDeskribapena(deskribapena);
-		newProduct.setIrudiak(irudiak);
-		newProduct.setTendentziak(false);
-		
-		newProduct.guardarProducto();
-		
-		
-	}
-	
+    public void añadirProducto(String produktoa, double prezioa, String marca, int stockKantitatea, double produktuaren_KG, double iritzia, String deskribapena, String irudiak) {
+        Produktoa newProduct = new Produktoa();
+
+        newProduct.setProduktua(produktoa);
+        newProduct.setPrezioa(prezioa);
+        newProduct.setMarca(marca);
+        newProduct.setStockKantitatea(stockKantitatea);
+        newProduct.setProduktuaren_KG(produktuaren_KG);
+        newProduct.setIritzia(iritzia);
+        newProduct.setDeskribapena(deskribapena);
+        newProduct.setIrudiak(irudiak);
+
+        newProduct.guardarProducto();
+    }
 	
 
 	public void guardar() {
@@ -312,4 +305,5 @@ public class Langileak extends Usuarioak {
 	    System.out.println(validacion);
 	    return validacion;
 	}
+
 }

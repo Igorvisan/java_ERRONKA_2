@@ -6,34 +6,33 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JTable;
 import javax.swing.JButton;
-import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
-import javax.swing.JTable;
+import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
-import javax.swing.JLabel;
 
-public class AgregarProducto extends JFrame {
+public class ModificarProducto extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JButton btnShowTable;
 	private JTable jTableBiltegia;
 	private JScrollPane scrollPane;
 	private JTextField txtProduktua;
 	private JTextField txtPrezioa;
 	private JTextField txtMarca;
-	private JTextField txtKatitatea;
+	private JTextField txtKantitatea;
 	private JTextField txtPisua;
 	private JTextField txtIritzia;
+	private JTextField txtDeskribapena;
 	private JTextField txtLinkImagenes;
-	private JButton btnAddProduct;
 
 	/**
 	 * Launch the application.
@@ -42,7 +41,7 @@ public class AgregarProducto extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AgregarProducto frame = new AgregarProducto();
+					ModificarProducto frame = new ModificarProducto();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,9 +53,9 @@ public class AgregarProducto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AgregarProducto() {
+	public ModificarProducto() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1023, 758);
+		setBounds(100, 100, 1027, 557);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -64,6 +63,7 @@ public class AgregarProducto extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnGoBack = new JButton("VOLVER");
+		btnGoBack.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LangileenPantaila2 langile2 = new LangileenPantaila2();
@@ -73,14 +73,12 @@ public class AgregarProducto extends JFrame {
 				dispose();
 			}
 		});
-		btnGoBack.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnGoBack.setBounds(819, 657, 180, 54);
+		btnGoBack.setBounds(793, 476, 167, 34);
 		contentPane.add(btnGoBack);
 		
-		JButton btnShowTable = new JButton("DISPLAY");
+		btnShowTable = new JButton("DISPLAY");
 		btnShowTable.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        // Crear una instancia de ConnectionDB para manejar la conexión a la base de datos
+			public void actionPerformed(ActionEvent e) {
 		        ConnectionDB connectionDB = new ConnectionDB();
 		        // Obtener la conexión a la base de datos
 		        Connection conexion = connectionDB.obtenerConexion();
@@ -128,125 +126,78 @@ public class AgregarProducto extends JFrame {
 		        } catch (Exception error) {
 		            error.printStackTrace();
 		        }
-		    }
+			}
 		});
-		btnShowTable.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnShowTable.setBounds(825, 269, 147, 41);
+		btnShowTable.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnShowTable.setBounds(793, 184, 167, 34);
 		contentPane.add(btnShowTable);
 		
 		jTableBiltegia = new JTable();
-		jTableBiltegia.setBounds(56, 318, 926, 317);
+		jTableBiltegia.setBounds(54, 228, 906, 238);
 		contentPane.add(jTableBiltegia);
 		
 		scrollPane = new JScrollPane(jTableBiltegia);
-		scrollPane.setBounds(46, 320, 926, 317);
+		scrollPane.setBounds(54, 228, 906, 238);
 		contentPane.add(scrollPane);
 		
 		txtProduktua = new JTextField();
-		txtProduktua.setBounds(114, 51, 147, 28);
-		contentPane.add(txtProduktua);
 		txtProduktua.setColumns(10);
+		txtProduktua.setBounds(122, 32, 147, 28);
+		contentPane.add(txtProduktua);
 		
 		txtPrezioa = new JTextField();
 		txtPrezioa.setColumns(10);
-		txtPrezioa.setBounds(114, 105, 147, 28);
+		txtPrezioa.setBounds(122, 78, 147, 28);
 		contentPane.add(txtPrezioa);
 		
 		txtMarca = new JTextField();
 		txtMarca.setColumns(10);
-		txtMarca.setBounds(114, 154, 147, 28);
+		txtMarca.setBounds(122, 128, 147, 28);
 		contentPane.add(txtMarca);
 		
-		txtKatitatea = new JTextField();
-		txtKatitatea.setColumns(10);
-		txtKatitatea.setBounds(114, 206, 147, 28);
-		contentPane.add(txtKatitatea);
+		txtKantitatea = new JTextField();
+		txtKantitatea.setColumns(10);
+		txtKantitatea.setBounds(122, 174, 147, 28);
+		contentPane.add(txtKantitatea);
 		
 		txtPisua = new JTextField();
 		txtPisua.setColumns(10);
-		txtPisua.setBounds(114, 256, 147, 28);
+		txtPisua.setBounds(430, 32, 147, 28);
 		contentPane.add(txtPisua);
 		
 		txtIritzia = new JTextField();
 		txtIritzia.setColumns(10);
-		txtIritzia.setBounds(457, 55, 147, 28);
+		txtIritzia.setBounds(430, 78, 147, 28);
 		contentPane.add(txtIritzia);
+		
+		txtDeskribapena = new JTextField();
+		txtDeskribapena.setColumns(10);
+		txtDeskribapena.setBounds(430, 128, 147, 28);
+		contentPane.add(txtDeskribapena);
 		
 		txtLinkImagenes = new JTextField();
 		txtLinkImagenes.setColumns(10);
-		txtLinkImagenes.setBounds(457, 105, 147, 28);
+		txtLinkImagenes.setBounds(430, 174, 147, 28);
 		contentPane.add(txtLinkImagenes);
 		
-		JTextArea txtDeskribapena = new JTextArea();
-		txtDeskribapena.setBounds(666, 52, 318, 171);
-		contentPane.add(txtDeskribapena);
+		JCheckBox chckbxStock = new JCheckBox("Hay Stock?");
+		chckbxStock.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		chckbxStock.setBounds(650, 31, 147, 28);
+		contentPane.add(chckbxStock);
 		
-		btnAddProduct = new JButton("AÑADIR PRODUCTO");
-        btnAddProduct.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Langileak langileProduct = new Langileak();
-
-                double dPrezioa = Double.parseDouble(txtPrezioa.getText());
-                int kantitatea = Integer.parseInt(txtKatitatea.getText());
-                double dPisua = Double.parseDouble(txtPisua.getText());
-                double dIritzia = Double.parseDouble(txtIritzia.getText());
-
-                langileProduct.añadirProducto(txtProduktua.getText(), dPrezioa, txtMarca.getText(), kantitatea, dPisua, dIritzia, txtDeskribapena.getText(), txtLinkImagenes.getText());
-                
-                btnShowTable.doClick();
-                txtProduktua.setText("");
-                txtPrezioa.setText("");
-                txtMarca.setText("");
-                txtKatitatea.setText("");
-                txtPisua.setText("");
-                txtIritzia.setText("");
-                txtLinkImagenes.setText("");
-                txtDeskribapena.setText("");
-                
-            }
-        });
-		btnAddProduct.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnAddProduct.setBounds(457, 157, 147, 35);
-		contentPane.add(btnAddProduct);
+		JCheckBox chckbxTendentziak = new JCheckBox("Tendentziak");
+		chckbxTendentziak.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		chckbxTendentziak.setBounds(650, 81, 147, 28);
+		contentPane.add(chckbxTendentziak);
 		
-		JLabel lblProduktua = new JLabel("Produktu izena");
-		lblProduktua.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblProduktua.setBounds(10, 51, 94, 28);
-		contentPane.add(lblProduktua);
+		JButton btnNewButton = new JButton("MODIFICAR");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnNewButton.setBounds(607, 131, 137, 34);
+		contentPane.add(btnNewButton);
 		
-		JLabel lblPrezioa = new JLabel("Prezioa");
-		lblPrezioa.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblPrezioa.setBounds(10, 105, 94, 28);
-		contentPane.add(lblPrezioa);
-		
-		JLabel lblMarca = new JLabel("Marca");
-		lblMarca.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblMarca.setBounds(10, 154, 94, 28);
-		contentPane.add(lblMarca);
-		
-		JLabel lblKantitatea = new JLabel("Kantitatea");
-		lblKantitatea.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblKantitatea.setBounds(10, 206, 94, 28);
-		contentPane.add(lblKantitatea);
-		
-		JLabel lblPisua = new JLabel("Pisua");
-		lblPisua.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblPisua.setBounds(10, 256, 94, 28);
-		contentPane.add(lblPisua);
-		
-		JLabel lblIritzia = new JLabel("Iritzia");
-		lblIritzia.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblIritzia.setBounds(353, 51, 94, 28);
-		contentPane.add(lblIritzia);
-		
-		JLabel lblIrudia = new JLabel("Irudi Linka");
-		lblIrudia.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblIrudia.setBounds(353, 105, 94, 28);
-		contentPane.add(lblIrudia);
-		
-		JLabel lblDeskribapena = new JLabel("Irudi Linka");
-		lblDeskribapena.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblDeskribapena.setBounds(780, 10, 94, 28);
-		contentPane.add(lblDeskribapena);
+		JButton btnHabilitar = new JButton("HABILITAR");
+		btnHabilitar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnHabilitar.setBounds(607, 174, 137, 34);
+		contentPane.add(btnHabilitar);
 	}
 }

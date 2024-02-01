@@ -108,37 +108,35 @@ public class Produktoa {
 	}
 	
 	public void guardarProducto() {
-		Connection conexion = connectionDB.obtenerConexion();
-		System.out.println("Inserte los datos para añadir un nuevo producto ");
-		
-		String orden = "INSERT INTO second_life.biltegia (Produktua, Prezioa, Marca, Stock, Stock_kantitatea, Produktuaren_KG, Iritzia, Deskribapena, imagenes, tendencia) " +
-		"VALUES (?, ?, ?, true, ?, ?, ?, ?, ?, false)";
-		
-		try(PreparedStatement statement = conexion.prepareStatement(orden)){
-			
-			
-			statement.setString(1, this.getProduktua());
-			statement.setDouble(2, this.getPrezioa());
-			statement.setString(3, this.getMarca());
-			statement.setInt(5, this.getStockKantitatea());
-			statement.setDouble(6, this.getProduktuaren_KG());
-			statement.setDouble(7, this.getIritzia());
-			statement.setString(8, this.getDeskribapena());
-			statement.setString(9, this.getIrudiak());
-			statement.setBoolean(10, this.isTendentziak());
-			
-			if(statement.execute() == false) {
-				JOptionPane.showMessageDialog(null, "Ha ocurrido un error a la hora de insertar");
-			}
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				conexion.close();
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
+        Connection conexion = connectionDB.obtenerConexion();
+        System.out.println("Inserte los datos para añadir un nuevo producto ");
+
+        String orden = "INSERT INTO second_life.biltegia (Produktua, Prezioa, Marca, Stock, Stock_kantitatea, Produktuaren_KG, Iritzia, Deskribapena, imagenes, tendencia) " +
+                "VALUES (?, ?, ?, true, ?, ?, ?, ?, ?, false)";
+
+        try (PreparedStatement statement = conexion.prepareStatement(orden)) {
+            statement.setString(1, this.getProduktua());
+            statement.setDouble(2, this.getPrezioa());
+            statement.setString(3, this.getMarca());
+            statement.setInt(4, this.getStockKantitatea());
+            statement.setDouble(5, this.getProduktuaren_KG());
+            statement.setDouble(6, this.getIritzia());
+            statement.setString(7, this.getDeskribapena());
+            statement.setString(8, this.getIrudiak());
+
+            if (statement.execute() == false) {
+                JOptionPane.showMessageDialog(null, "Se han insertado los datos correctamente");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conexion.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
+
