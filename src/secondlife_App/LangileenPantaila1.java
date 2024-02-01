@@ -1,6 +1,7 @@
 package secondlife_App;
 
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,10 +11,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class LangileenPantaila1 extends JFrame {
-
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
     private JPanel contentPane;
-
+    
     /**
      * Launch the application.
      */
@@ -29,7 +29,6 @@ public class LangileenPantaila1 extends JFrame {
             }
         });
     }
-
     /**
      * Create the frame.
      */
@@ -39,19 +38,21 @@ public class LangileenPantaila1 extends JFrame {
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
-        contentPane.setLayout(null);
-
-        // Botón para agregar empleado
+        contentPane.setLayout(null); // Botón para agregar empleado
         JButton btnAgregarEmpleado = new JButton("AGREGAR EMPLEADO");
         btnAgregarEmpleado.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Extract Variable: Crear una instancia de AgregarEmpleado
+                AGREGAR_EMPLEADO();
+            }
+
+			private void AGREGAR_EMPLEADO() {
+				// Extract Variable: Crear una instancia de AgregarEmpleado
                 AgregarEmpleado newWorker = new AgregarEmpleado();
                 // Extract Variable: Mostrar la ventana de AgregarEmpleado
                 newWorker.setVisible(true);
                 // Extract Variable: Cerrar la ventana actual
                 dispose();
-            }
+			}
         });
         btnAgregarEmpleado.setBounds(27, 27, 209, 79);
         btnAgregarEmpleado.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -61,13 +62,17 @@ public class LangileenPantaila1 extends JFrame {
         JButton btnGoBack = new JButton("Volver");
         btnGoBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Extract Variable: Crear una instancia de InicioSesion
+                VOLVER();
+            }
+
+			private void VOLVER() {
+				// Extract Variable: Crear una instancia de InicioSesion
                 InicioSesion logIn = new InicioSesion();
                 // Extract Variable: Mostrar la ventana de InicioSesion
                 logIn.setVisible(true);
                 // Extract Variable: Cerrar la ventana actual
                 dispose();
-            }
+			}
         });
         btnGoBack.setFont(new Font("Tahoma", Font.PLAIN, 18));
         btnGoBack.setBounds(542, 436, 131, 38);
@@ -77,13 +82,17 @@ public class LangileenPantaila1 extends JFrame {
         JButton btnBorrarEmpleado = new JButton("ELIMINAR EMPLEADO");
         btnBorrarEmpleado.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Extract Variable: Crear una instancia de EliminarEmpleado
+                ELIMINAR_EMPLEADO();
+            }
+
+			private void ELIMINAR_EMPLEADO() {
+				// Extract Variable: Crear una instancia de EliminarEmpleado
                 EliminarEmpleado deleteWorker = new EliminarEmpleado();
                 // Extract Variable: Mostrar la ventana de EliminarEmpleado
                 deleteWorker.setVisible(true);
                 // Extract Variable: Cerrar la ventana actual
                 dispose();
-            }
+			}
         });
         btnBorrarEmpleado.setFont(new Font("Tahoma", Font.PLAIN, 18));
         btnBorrarEmpleado.setBounds(259, 27, 209, 79);
