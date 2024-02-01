@@ -3,6 +3,7 @@ package secondlife_App;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -17,6 +18,8 @@ import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ModificarProducto extends JFrame {
 
@@ -132,7 +135,68 @@ public class ModificarProducto extends JFrame {
 		btnShowTable.setBounds(793, 184, 167, 34);
 		contentPane.add(btnShowTable);
 		
+		JCheckBox chckbxTendentziak = new JCheckBox("Tendentziak");
+		chckbxTendentziak.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		chckbxTendentziak.setBounds(650, 81, 147, 28);
+		contentPane.add(chckbxTendentziak);
+		
+		JCheckBox chckbxStock = new JCheckBox("Hay Stock?");
+		chckbxStock.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		chckbxStock.setBounds(650, 31, 147, 28);
+		contentPane.add(chckbxStock);
+		
 		jTableBiltegia = new JTable();
+		jTableBiltegia.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+		        ConnectionDB connectionDB = new ConnectionDB();				
+		        Connection conexion = connectionDB.obtenerConexion();
+				
+				
+				try {
+					
+					int row = jTableBiltegia.getSelectedRow();
+					String tableClick = (jTableBiltegia.getModel().getValueAt(row, 0).toString());
+					
+					String orden = "SELECT * FROM second_life.biltegia WHERE id ='"+tableClick+"' ";
+					
+					PreparedStatement statement = conexion.prepareStatement(orden);
+					ResultSet resultado = statement.executeQuery();
+					
+					if(resultado.next()) {
+						String add1 = resultado.getString("Produktua");
+						txtProduktua.setText(add1);
+						String add2 = resultado.getString("Prezioa");
+						txtPrezioa.setText(add2);
+						String add3 = resultado.getString("Marca");
+						txtMarca.setText(add3);
+						String add4 = resultado.getString("Stock_kantitatea");
+						txtKantitatea.setText(add4);
+						String add5 = resultado.getString("Produktuaren_KG");
+						txtPisua.setText(add5);
+						String add6 = resultado.getString("Iritzia");
+						txtIritzia.setText(add6);
+						String add7 = resultado.getString("Deskribapena");
+						txtDeskribapena.setText(add7);
+						String add8 = resultado.getString("imagenes");
+						txtLinkImagenes.setText(add8);
+						boolean check1value = resultado.getBoolean("Stock");
+						chckbxStock.setSelected(check1value);
+						boolean check2value = resultado.getBoolean("tendencia");
+						chckbxTendentziak.setSelected(check2value);
+						
+						
+					}
+					
+					
+				}catch (Exception error) {
+					JOptionPane.showMessageDialog(null, error);
+				}
+				
+				
+				
+			}
+		});
 		jTableBiltegia.setBounds(54, 228, 906, 238);
 		contentPane.add(jTableBiltegia);
 		
@@ -180,24 +244,9 @@ public class ModificarProducto extends JFrame {
 		txtLinkImagenes.setBounds(430, 174, 147, 28);
 		contentPane.add(txtLinkImagenes);
 		
-		JCheckBox chckbxStock = new JCheckBox("Hay Stock?");
-		chckbxStock.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		chckbxStock.setBounds(650, 31, 147, 28);
-		contentPane.add(chckbxStock);
-		
-		JCheckBox chckbxTendentziak = new JCheckBox("Tendentziak");
-		chckbxTendentziak.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		chckbxTendentziak.setBounds(650, 81, 147, 28);
-		contentPane.add(chckbxTendentziak);
-		
 		JButton btnNewButton = new JButton("MODIFICAR");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton.setBounds(607, 131, 137, 34);
+		btnNewButton.setBounds(606, 168, 137, 34);
 		contentPane.add(btnNewButton);
-		
-		JButton btnHabilitar = new JButton("HABILITAR");
-		btnHabilitar.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnHabilitar.setBounds(607, 174, 137, 34);
-		contentPane.add(btnHabilitar);
 	}
 }
