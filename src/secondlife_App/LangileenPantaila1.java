@@ -1,7 +1,6 @@
 package secondlife_App;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,78 +11,65 @@ import java.awt.event.ActionEvent;
 
 public class LangileenPantaila1 extends JFrame {
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+    private static final long serialVersionUID = 1L;
+    private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LangileenPantaila1 frame = new LangileenPantaila1();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    LangileenPantaila1 frame = new LangileenPantaila1();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
-	/**
-	 * Create the frame.
-	 */
-	public LangileenPantaila1() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 697, 521);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+    public LangileenPantaila1() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 697, 521);
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JButton btnAgregarEmpleado = new JButton("AGREGAR EMPLEADO");
-		btnAgregarEmpleado.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				AgregarEmpleado newWorker = new AgregarEmpleado();
-				
-				newWorker.setVisible(true);
-				
-				dispose();
-			}
-		});
-		btnAgregarEmpleado.setBounds(27, 27, 209, 79);
-		btnAgregarEmpleado.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		contentPane.add(btnAgregarEmpleado);
-		
-		JButton btnGoBack = new JButton("Volver");
-		btnGoBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				InicioSesion logIn = new InicioSesion();
-				
-				logIn.setVisible(true);
-				
-				dispose();
-			}
-		});
-		btnGoBack.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnGoBack.setBounds(542, 436, 131, 38);
-		contentPane.add(btnGoBack);
-		
-		JButton btnBorrarEmpleado = new JButton("ELIMINAR EMPLEADO");
-		btnBorrarEmpleado.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				EliminarEmpleado deleteWorker = new EliminarEmpleado();
-				
-				deleteWorker.setVisible(true);
-				
-				dispose();
-			}
-		});
-		btnBorrarEmpleado.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnBorrarEmpleado.setBounds(259, 27, 209, 79);
-		contentPane.add(btnBorrarEmpleado);
-	}
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
+
+        //   LO DE Extract Method
+        addButton("AGREGAR EMPLEADO", 27, 27, 209, 79, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                openWindow(new AgregarEmpleado());
+            }
+        });
+
+        //   LO DE Extract Method
+        addButton("Volver", 542, 436, 131, 38, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                openWindow(new InicioSesion());
+            }
+        });
+
+        //   LO DE Extract Method
+        addButton("ELIMINAR EMPLEADO", 259, 27, 209, 79, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                openWindow(new EliminarEmpleado());
+            }
+        });
+    }
+
+    // Método extraído
+    private void addButton(String text, int x, int y, int width, int height, ActionListener listener) {
+        JButton button = new JButton(text);
+        button.addActionListener(listener);
+        button.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        button.setBounds(x, y, width, height);
+        contentPane.add(button);
+    }
+
+    // Método extraído
+    private void openWindow(JFrame newFrame) {
+        newFrame.setVisible(true);
+        dispose();
+    }
 }
