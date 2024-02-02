@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 public class Produktoa {
 	
+	private int id;
 	private String produktua;
 	private double prezioa;
 	private String marca;
@@ -20,6 +21,12 @@ public class Produktoa {
 	private static ConnectionDB connectionDB;
 	
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getProduktua() {
 		return produktua;
 	}
@@ -85,9 +92,11 @@ public class Produktoa {
 		
 	}
 	
-	public Produktoa(String produktua, double prezioa, String marca, boolean stock, int stockKantitatea,
+
+	public Produktoa(int id, String produktua, double prezioa, String marca, boolean stock, int stockKantitatea,
 			double produktuaren_KG, double iritzia, String deskribapena, String irudiak, boolean tendentziak) {
 		super();
+		this.id = id;
 		this.produktua = produktua;
 		this.prezioa = prezioa;
 		this.marca = marca;
@@ -138,5 +147,37 @@ public class Produktoa {
             }
         }
     }
+	public void guardarCambioProducto() {
+		Connection conexion = connectionDB.obtenerConexion();
+		
+		String orden = "UPDATE second_life.biltegia SET Produktua=?, Prezioa=?, Marca=?, Stock=?, Stock_kantitatea=?, Produktuaren_KG=?, Iritzia=?, Deskribapena=?, imagenes=?, tendencia=? WHERE id= '"+this.getId()+"'";
+		
+		try(PreparedStatement statement = conexion.prepareStatement(orden)){
+			
+		    statement.setString(1, this.getProduktua());
+		    statement.setDouble(2, this.getPrezioa());
+		    statement.setString(3, this.getMarca());
+		    statement.setBoolean(4, this.isStock());
+		    statement.setInt(5, this.getStockKantitatea());
+		    statement.setDouble(6, this.getProduktuaren_KG());
+		    statement.setDouble(7, this.getIritzia());
+		    statement.setString(8, this.getDeskribapena());
+		    statement.setString(9, this.getIrudiak());
+		    statement.setBoolean(10, this.isTendentziak());
+			
+			if(statement.executeUpdate() > 0) {
+				JOptionPane.showMessageDialog(null, "Se han insertado los datos correctamente");
+			}
+			
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}finally {
+			try {
+				conexion.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
 

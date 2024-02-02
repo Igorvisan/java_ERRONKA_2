@@ -93,6 +93,27 @@ public class Langileak extends Usuarioak {
 		this.langileNormala = langileNormala;
 	}
 	
+	public void modificarProducto(String produktoa, double prezioa, String marca, int stockKantitatea, double produktuaren_KG, double iritzia, String deskribapena, String irudiak, 
+			boolean stock, boolean tendentzia, int id) {
+		
+		Produktoa modify = new Produktoa();
+		
+		modify.setId(id);
+        modify.setProduktua(produktoa);
+        modify.setPrezioa(prezioa);
+        modify.setMarca(marca);
+        modify.setStockKantitatea(stockKantitatea);
+        modify.setProduktuaren_KG(produktuaren_KG);
+        modify.setIritzia(iritzia);
+        modify.setDeskribapena(deskribapena);
+        modify.setIrudiak(irudiak);
+        modify.setStock(stock);
+        modify.setTendentziak(tendentzia);
+
+        modify.guardarCambioProducto();
+        
+	}
+	
     public void añadirProducto(String produktoa, double prezioa, String marca, int stockKantitatea, double produktuaren_KG, double iritzia, String deskribapena, String irudiak) {
         Produktoa newProduct = new Produktoa();
 

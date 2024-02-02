@@ -19,6 +19,8 @@ import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class ModificarProducto extends JFrame {
 
@@ -44,6 +46,7 @@ public class ModificarProducto extends JFrame {
 	private JTextField txtLinkImagenes;
 	private JCheckBox chckbxTendentziak;
 	private JCheckBox chckbxStock;
+	private JTextField txtId;
 
 	/**
 	 * Launch the application.
@@ -182,9 +185,9 @@ public class ModificarProducto extends JFrame {
 				txtIritzia.setText(resultado.getString("Iritzia"));
 				txtDeskribapena.setText(resultado.getString("Deskribapena"));
 				txtLinkImagenes.setText(resultado.getString("imagenes"));
-
 				chckbxStock.setSelected(resultado.getBoolean("Stock"));
 				chckbxTendentziak.setSelected(resultado.getBoolean("tendencia"));
+				txtId.setText(resultado.getString("id"));
 			}
 		} catch (Exception error) {
 			JOptionPane.showMessageDialog(null, error);
@@ -211,10 +214,49 @@ public class ModificarProducto extends JFrame {
 	}
 
 	private void initializeButtons() {
-		JButton btnNewButton = new JButton(MODIFICAR_LABEL);
+		JButton btnNewButton = new JButton("MODIFICAR");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+                Langileak modifyProduct = new Langileak();
+
+                double dPrezioa = Double.parseDouble(txtPrezioa.getText());
+                int kantitatea = Integer.parseInt(txtKantitatea.getText());
+                double dPisua = Double.parseDouble(txtPisua.getText());
+                double dIritzia = Double.parseDouble(txtIritzia.getText());
+                int id = Integer.parseInt(txtId.getText());
+                
+                modifyProduct.modificarProducto(txtProduktua.getText(), dPrezioa, txtMarca.getText(), kantitatea, dPisua, dIritzia, txtDeskribapena.getText(), txtLinkImagenes.getText(), chckbxStock.isSelected(), chckbxTendentziak.isSelected(), id);
+                
+                btnShowTable.doClick();
+                txtProduktua.setText("");
+                txtPrezioa.setText("");
+                txtMarca.setText("");
+                txtKantitatea.setText("");
+                txtPisua.setText("");
+                txtIritzia.setText("");
+                txtDeskribapena.setText("");
+                txtLinkImagenes.setText("");
+                chckbxStock.setSelected(false);
+                chckbxTendentziak.setSelected(false);
+                txtId.setText("");
+                
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton.setBounds(606, 168, 137, 34);
 		contentPane.add(btnNewButton);
+		
+		txtId = new JTextField();
+		txtId.setColumns(10);
+		txtId.setBounds(826, 67, 147, 28);
+		contentPane.add(txtId);
+		
+		JLabel lblID = new JLabel("ID");
+		lblID.setHorizontalAlignment(SwingConstants.CENTER);
+		lblID.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblID.setBounds(844, 31, 116, 28);
+		contentPane.add(lblID);
 
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

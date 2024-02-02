@@ -1,3 +1,7 @@
+package secondlife_App;
+
+
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,7 +51,8 @@ public class LangileenPantaila2 extends JFrame {
         btnProcesatu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Acción del botón 1
-                performButtonAction("Botón 1 presionado");
+                performButtonAction("Botón 1 presionado");               
+                
             }
         });
         contentPane.add(btnProcesatu);
@@ -60,6 +65,12 @@ public class LangileenPantaila2 extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Acción del botón 2
                 performButtonAction("Botón 2 presionado");
+                
+                AgregarProducto addProduct = new AgregarProducto();
+                
+                addProduct.setVisible(true);
+                
+                dispose();
             }
         });
         contentPane.add(btnAgregarProducto);
@@ -72,6 +83,12 @@ public class LangileenPantaila2 extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Acción del botón 3
                 performButtonAction("Botón 3 presionado");
+                                                
+                InicioSesion logIn = new InicioSesion();
+                
+                logIn.setVisible(true);
+                
+                dispose();
             }
         });
         contentPane.add(btnGoBack);
@@ -84,6 +101,13 @@ public class LangileenPantaila2 extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Acción del botón 4
                 performButtonAction("Botón 4 presionado");
+                
+                ModificarProducto modifyProduct = new ModificarProducto();
+                
+                modifyProduct.setVisible(true);
+                
+                dispose();
+                
             }
         });
         contentPane.add(btnModificatu);
