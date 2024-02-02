@@ -21,73 +21,117 @@ public class Produktoa {
 	private static ConnectionDB connectionDB;
 	
 	
+	
 	public int getId() {
 		return id;
 	}
+
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
+
 	public String getProduktua() {
 		return produktua;
 	}
+
+
 	public void setProduktua(String produktua) {
 		this.produktua = produktua;
 	}
+
+
 	public double getPrezioa() {
 		return prezioa;
 	}
+
+
 	public void setPrezioa(double prezioa) {
 		this.prezioa = prezioa;
 	}
+
+
 	public String getMarca() {
 		return marca;
 	}
+
+
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
+
+
 	public boolean isStock() {
 		return stock;
 	}
+
+
 	public void setStock(boolean stock) {
 		this.stock = stock;
 	}
+
+
 	public int getStockKantitatea() {
 		return stockKantitatea;
 	}
+
+
 	public void setStockKantitatea(int stockKantitatea) {
 		this.stockKantitatea = stockKantitatea;
 	}
+
+
 	public double getProduktuaren_KG() {
 		return produktuaren_KG;
 	}
+
+
 	public void setProduktuaren_KG(double produktuaren_KG) {
 		this.produktuaren_KG = produktuaren_KG;
 	}
+
+
 	public double getIritzia() {
 		return iritzia;
 	}
+
+
 	public void setIritzia(double iritzia) {
 		this.iritzia = iritzia;
 	}
+
+
 	public String getDeskribapena() {
 		return deskribapena;
 	}
+
+
 	public void setDeskribapena(String deskribapena) {
 		this.deskribapena = deskribapena;
 	}
+
+
 	public String getIrudiak() {
 		return irudiak;
 	}
+
+
 	public void setIrudiak(String irudiak) {
 		this.irudiak = irudiak;
 	}
+
+
 	public boolean isTendentziak() {
 		return tendentziak;
 	}
+
+
 	public void setTendentziak(boolean tendentziak) {
 		this.tendentziak = tendentziak;
 	}
-	
+
+
 	public Produktoa() {
 		
 	}

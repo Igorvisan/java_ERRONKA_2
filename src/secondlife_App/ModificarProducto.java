@@ -244,7 +244,7 @@ public class ModificarProducto extends JFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnNewButton.setBounds(606, 168, 137, 34);
+		btnNewButton.setBounds(610, 184, 137, 34);
 		contentPane.add(btnNewButton);
 		
 		txtId = new JTextField();

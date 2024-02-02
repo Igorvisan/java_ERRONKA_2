@@ -5,6 +5,7 @@ public class Bezeroak extends Usuarioak {
 	
 
 	public Bezeroak() {
+		
 	}
 
 

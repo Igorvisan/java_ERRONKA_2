@@ -67,6 +67,7 @@ public class InicioSesion extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				LangileenPantaila1 langile1 = new LangileenPantaila1();
 				LangileenPantaila2 langile2 = new LangileenPantaila2();
+				LangileenPantaila3 langile3 = new LangileenPantaila3();
 				String usuario = txtUsuario.getText();
 				@SuppressWarnings("deprecation")
 				String contraseña = txtPassword.getText();
@@ -93,6 +94,14 @@ public class InicioSesion extends JFrame {
 					dispose();
 				}
 				else if(Langileak.confirmarAdmistrador(usuario, contraseña) == false) {
+					JOptionPane.showMessageDialog(null, "Las creedenciales no son validas");
+				}
+				if(Langileak.confirmarLangileArduraduna(usuario, contraseña)) {
+					
+					langile3.setVisible(true);
+					
+					dispose();
+				}else if(Langileak.confirmarLangileArduraduna(usuario, contraseña) == false) {
 					JOptionPane.showMessageDialog(null, "Las creedenciales no son validas");
 				}
 				

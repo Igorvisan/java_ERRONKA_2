@@ -17,7 +17,10 @@ import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class EliminarEmpleado extends JFrame {
 
@@ -27,6 +30,7 @@ public class EliminarEmpleado extends JFrame {
 	private JTable table;
 	private JScrollPane scrollPane;
 	private JButton btnDelete;
+	private ConnectionDB connection;
 
 	/**
 	 * Launch the application.
@@ -122,6 +126,28 @@ public class EliminarEmpleado extends JFrame {
 		contentPane.add(btnDisplay);
 		
 		scrollPane = new JScrollPane();
+		scrollPane.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ConnectionDB connectionDB = new ConnectionDB();
+				
+				Connection conexion = connectionDB.obtenerConexion();
+				
+				try {
+					int row = table.getSelectedRow();
+					String tableClick = (table.getModel().getValueAt(row, 0).toString());
+					String orden = "SELECT Izena FROM second_life.biltegia WHERE id ='" + tableClick + "' ";
+					
+					PreparedStatement statement = conexion.prepareStatement(orden);
+					ResultSet resultado = statement.executeQuery();
+					
+					if(resultado.next()) {
+						txtIzena.setText(resultado.getString("Izena"));
+					}
+			}catch(Exception error) {
+				JOptionPane.showMessageDialog(null, error);
+			}
+		}});
 		scrollPane.setBounds(124, 63, 469, 352);
 		contentPane.add(scrollPane);
 		
