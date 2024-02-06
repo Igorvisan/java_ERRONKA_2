@@ -85,6 +85,7 @@ public class InicioSesion extends JFrame {
 				
 				else if(Langileak.confirmarEmpleadoNormal(usuario, contraseña) == false) {
 					JOptionPane.showMessageDialog(null, "Las creedenciales no son validas");
+					
 				}
 				
 				if(Langileak.confirmarAdmistrador(usuario, contraseña)) {

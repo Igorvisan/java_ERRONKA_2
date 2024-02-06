@@ -54,7 +54,7 @@ public class LangileenPantaila1 extends JFrame {
                 dispose();
 			}
         });
-        btnAgregarEmpleado.setBounds(91, 222, 209, 79);
+        btnAgregarEmpleado.setBounds(95, 165, 209, 79);
         btnAgregarEmpleado.setFont(new Font("Tahoma", Font.PLAIN, 18));
         contentPane.add(btnAgregarEmpleado);
 
@@ -95,7 +95,16 @@ public class LangileenPantaila1 extends JFrame {
 			}
         });
         btnBorrarEmpleado.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        btnBorrarEmpleado.setBounds(416, 223, 209, 79);
+        btnBorrarEmpleado.setBounds(409, 165, 209, 79);
         contentPane.add(btnBorrarEmpleado);
+        
+        JButton btnModificarEmpleado = new JButton("MODIFICAR EMPLEADO");
+        btnModificarEmpleado.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        btnModificarEmpleado.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        btnModificarEmpleado.setBounds(241, 268, 239, 79);
+        contentPane.add(btnModificarEmpleado);
     }
 }

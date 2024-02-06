@@ -19,6 +19,7 @@ import java.util.Date;
 public class Langileak extends Usuarioak {
 
 	private String departamentua;
+	private int idLangilea;
 	private String kontuKorrontea;
 	private boolean balidazionAdministrazioa;
 	private boolean langileArduradunak;
@@ -91,6 +92,67 @@ public class Langileak extends Usuarioak {
 
 	public void setLangileNormala(boolean langileNormala) {
 		this.langileNormala = langileNormala;
+	}
+	
+	public int getIdLangilea() {
+		return idLangilea;
+	}
+
+	public void setIdLangilea(int idLangilea) {
+		this.idLangilea = idLangilea;
+	}
+
+	public void modificarEmpleado(String NAN, String izena, String abizena, String emaila,
+			String jaiotzeData,boolean langileArduraduna, boolean administratzailea, String telefonoZenbakia, String contraseña, boolean langileNormala, int id) {
+		
+		Langileak mlangileak = new Langileak();
+		
+		this.idLangilea = id;
+		super.setNAN(NAN);
+		super.setIzena(izena);
+		super.setAbizena(abizena);
+		super.setEmaila(emaila);
+		this.jaiotzeData = jaiotzeData;
+		super.setTelefonoa(telefonoZenbakia);
+		this.langileArduradunak = langileArduraduna;
+		this.balidazionAdministrazioa = administratzailea;				
+		this.contraseña = contraseña;
+		this.langileNormala = langileNormala;
+		
+		mlangileak.guardarModificacion();
+	}
+	
+	public void guardarModificacion() {
+		Connection conexion = connectionDB.obtenerConexion();
+		
+		String orden = "UPDATE second_life.langileak SET NAN=?, Izena=?, Abizena=?, Korreoa=?, Jaiotze_Data=?, Telefono_Zenbakia=?, Langile_arduraduna=?, Administratzailea=?, langile_normala=?, password=? WHERE Id_langilea= '"+this.idLangilea+"'";
+		
+		 try (PreparedStatement statement = conexion.prepareStatement(orden)) {
+			 
+		    	statement.setString(1, this.getNAN());
+		    	statement.setString(2, this.getIzena());
+		    	statement.setString(3, this.getAbizena());
+		    	statement.setString(4, this.getEmaila());
+		    	statement.setString(5, this.getJaiotzeData());
+		    	statement.setString(6, this.getTelefonoa());
+		    	statement.setBoolean(7, this.isLangileArduradunak());
+		    	statement.setBoolean(8, this.isBalidazionAdministrazioa());
+		    	statement.setBoolean(9, this.isLangileNormala());
+		    	statement.setString(10, this.getContraseña());
+		    	
+		    	if(statement.executeUpdate() > 0) {
+		    		JOptionPane.showMessageDialog(null, "Se han insertado los datos correctamente");
+		    	}
+		
+	}catch(Exception error) {
+		JOptionPane.showMessageDialog(null, error);
+	}finally {
+		try {
+			conexion.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	}
 	
 	public void modificarProducto(String produktoa, double prezioa, String marca, int stockKantitatea, double produktuaren_KG, double iritzia, String deskribapena, String irudiak, 
@@ -212,11 +274,12 @@ public class Langileak extends Usuarioak {
 	
 
 
-	
-	public Langileak(String departamentua, String kontuKorrontea, boolean balidazionAdministrazioa,
+
+	public Langileak(String departamentua, int idLangilea, String kontuKorrontea, boolean balidazionAdministrazioa,
 			boolean langileArduradunak, String jaiotzeData, String contraseña, boolean langileNormala) {
 		super();
 		this.departamentua = departamentua;
+		this.idLangilea = idLangilea;
 		this.kontuKorrontea = kontuKorrontea;
 		this.balidazionAdministrazioa = balidazionAdministrazioa;
 		this.langileArduradunak = langileArduradunak;
