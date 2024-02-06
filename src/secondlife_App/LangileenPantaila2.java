@@ -43,61 +43,6 @@ public class LangileenPantaila2 extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
-
-        // Botón 2
-        JButton btnAgregarProducto = new JButton("AGREGAR PRODUCTO");
-        btnAgregarProducto.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        btnAgregarProducto.setBounds(586, 230, 297, 106);
-        btnAgregarProducto.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Acción del botón 2
-                performButtonAction("Botón 2 presionado");
-                
-                AgregarProducto addProduct = new AgregarProducto();
-                
-                addProduct.setVisible(true);
-                
-                dispose();
-            }
-        });
-        contentPane.add(btnAgregarProducto);
-
-        // Botón 3
-        JButton btnGoBack = new JButton("VOLVER");
-        btnGoBack.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        btnGoBack.setBounds(775, 646, 196, 48);
-        btnGoBack.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Acción del botón 3
-                performButtonAction("Botón 3 presionado");
-                                                
-                InicioSesion logIn = new InicioSesion();
-                
-                logIn.setVisible(true);
-                
-                dispose();
-            }
-        });
-        contentPane.add(btnGoBack);
-
-        // Botón 4
-        JButton btnModificatu = new JButton("PRODUKTUAK MODIFICATU");
-        btnModificatu.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        btnModificatu.setBounds(357, 377, 297, 106);
-        btnModificatu.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Acción del botón 4
-                performButtonAction("Botón 4 presionado");
-                
-                ModificarProducto modifyProduct = new ModificarProducto();
-                
-                modifyProduct.setVisible(true);
-                
-                dispose();
-                
-            }
-        });
-        contentPane.add(btnModificatu);
         
         JButton btnEskaerakProcesatu = new JButton("ESKAERAK PROCESATU");
         btnEskaerakProcesatu.addActionListener(new ActionListener() {
@@ -113,6 +58,48 @@ public class LangileenPantaila2 extends JFrame {
         btnEskaerakProcesatu.setFont(new Font("Tahoma", Font.PLAIN, 18));
         btnEskaerakProcesatu.setBounds(131, 230, 297, 106);
         contentPane.add(btnEskaerakProcesatu);
+        
+        JButton btnGoBack = new JButton("CERRAR SESION");
+        btnGoBack.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		InicioSesion logIn = new InicioSesion();
+        		
+        		logIn.setVisible(true);
+        		
+        		dispose();
+        	}
+        });
+        btnGoBack.setFont(new Font("Tahoma", Font.PLAIN, 16));
+        btnGoBack.setBounds(775, 648, 196, 46);
+        contentPane.add(btnGoBack);
+        
+        JButton btnAgregarProducto = new JButton("AGREGAR PRODUCTO");
+        btnAgregarProducto.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		AgregarProducto a1 = new AgregarProducto();
+        		
+        		a1.setVisible(true);
+        		
+        		dispose();
+        	}
+        });
+        btnAgregarProducto.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        btnAgregarProducto.setBounds(595, 230, 297, 106);
+        contentPane.add(btnAgregarProducto);
+        
+        JButton btnModificarProducto = new JButton("MODIFICAR PRODUCTO");
+        btnModificarProducto.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		ModificarProducto m1 = new ModificarProducto();
+        		
+        		m1.setVisible(true);
+        		
+        		dispose();
+        	}
+        });
+        btnModificarProducto.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        btnModificarProducto.setBounds(357, 367, 297, 106);
+        contentPane.add(btnModificarProducto);
     }
 
     // Método para realizar la acción del botón y mostrar un mensaje
