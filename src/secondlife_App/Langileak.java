@@ -101,6 +101,7 @@ public class Langileak extends Usuarioak {
 	public void setIdLangilea(int idLangilea) {
 		this.idLangilea = idLangilea;
 	}
+	
 
 	public void modificarEmpleado(String NAN, String izena, String abizena, String emaila,
 			String jaiotzeData,boolean langileArduraduna, boolean administratzailea, String telefonoZenbakia, String contraseña, boolean langileNormala, int id) {

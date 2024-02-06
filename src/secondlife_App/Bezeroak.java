@@ -1,11 +1,14 @@
 package secondlife_App;
 
+import java.sql.Connection;
+
 public class Bezeroak extends Usuarioak {
 	
 	private String hiria;
 	private String probintzia;
 	private String herrialdea;
 	private int PK;
+	private static ConnectionDB connectionDB;
 	
 	
 	
@@ -90,10 +93,6 @@ public class Bezeroak extends Usuarioak {
 		return "Bezeroak [hiria=" + hiria + ", probintzia=" + probintzia + ", herrialdea=" + herrialdea + ", PK=" + PK
 				+ "]";
 	}
-	
-	
-
-
 	
 	
 }

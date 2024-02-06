@@ -44,23 +44,10 @@ public class LangileenPantaila2 extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        // Botón 1
-        JButton btnProcesatu = new JButton("ESKAERAK PROCESATU");
-        btnProcesatu.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        btnProcesatu.setBounds(112, 131, 297, 106);
-        btnProcesatu.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Acción del botón 1
-                performButtonAction("Botón 1 presionado");               
-                
-            }
-        });
-        contentPane.add(btnProcesatu);
-
         // Botón 2
         JButton btnAgregarProducto = new JButton("AGREGAR PRODUCTO");
         btnAgregarProducto.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        btnAgregarProducto.setBounds(560, 131, 297, 106);
+        btnAgregarProducto.setBounds(586, 230, 297, 106);
         btnAgregarProducto.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Acción del botón 2
@@ -96,7 +83,7 @@ public class LangileenPantaila2 extends JFrame {
         // Botón 4
         JButton btnModificatu = new JButton("PRODUKTUAK MODIFICATU");
         btnModificatu.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        btnModificatu.setBounds(336, 284, 297, 106);
+        btnModificatu.setBounds(357, 377, 297, 106);
         btnModificatu.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Acción del botón 4
@@ -111,6 +98,21 @@ public class LangileenPantaila2 extends JFrame {
             }
         });
         contentPane.add(btnModificatu);
+        
+        JButton btnEskaerakProcesatu = new JButton("ESKAERAK PROCESATU");
+        btnEskaerakProcesatu.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		EskaerakProcesatu eskaerak1 = new EskaerakProcesatu();
+        		
+        		eskaerak1.setVisible(true);
+        		
+        		dispose();
+        		
+        	}
+        });
+        btnEskaerakProcesatu.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        btnEskaerakProcesatu.setBounds(131, 230, 297, 106);
+        contentPane.add(btnEskaerakProcesatu);
     }
 
     // Método para realizar la acción del botón y mostrar un mensaje
