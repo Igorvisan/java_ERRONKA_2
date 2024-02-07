@@ -92,7 +92,7 @@ public class AgregarProducto extends JFrame {
 		        DefaultTableModel model = new DefaultTableModel();
 
 		        // Agregar columnas al modelo
-		        model.addColumn("Id");
+		        model.addColumn("id_biltegia");
 		        model.addColumn("Produktua");
 		        model.addColumn("Prezioa");
 		        model.addColumn("Marca");

@@ -194,7 +194,7 @@ public class Produktoa {
 	public void guardarCambioProducto() {
 		Connection conexion = connectionDB.obtenerConexion();
 		
-		String orden = "UPDATE second_life.biltegia SET Produktua=?, Prezioa=?, Marca=?, Stock=?, Stock_kantitatea=?, Produktuaren_KG=?, Iritzia=?, Deskribapena=?, imagenes=?, tendencia=? WHERE id= '"+this.getId()+"'";
+		String orden = "UPDATE second_life.biltegia SET Produktua=?, Prezioa=?, Marca=?, Stock=?, Stock_kantitatea=?, Produktuaren_KG=?, Iritzia=?, Deskribapena=?, imagenes=?, tendencia=? WHERE id_biltegia= '"+this.getId()+"'";
 		
 		try(PreparedStatement statement = conexion.prepareStatement(orden)){
 			

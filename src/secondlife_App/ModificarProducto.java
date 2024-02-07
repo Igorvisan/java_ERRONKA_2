@@ -171,7 +171,7 @@ public class ModificarProducto extends JFrame {
 		try {
 			int row = jTableBiltegia.getSelectedRow();
 			String tableClick = (jTableBiltegia.getModel().getValueAt(row, 0).toString());
-			String orden = "SELECT * FROM second_life.biltegia WHERE id ='" + tableClick + "' ";
+			String orden = "SELECT * FROM second_life.biltegia WHERE id_biltegia ='" + tableClick + "' ";
 
 			PreparedStatement statement = conexion.prepareStatement(orden);
 			ResultSet resultado = statement.executeQuery();
@@ -187,7 +187,7 @@ public class ModificarProducto extends JFrame {
 				txtLinkImagenes.setText(resultado.getString("imagenes"));
 				chckbxStock.setSelected(resultado.getBoolean("Stock"));
 				chckbxTendentziak.setSelected(resultado.getBoolean("tendencia"));
-				txtId.setText(resultado.getString("id"));
+				txtId.setText(resultado.getString("id_biltegia"));
 			}
 		} catch (Exception error) {
 			JOptionPane.showMessageDialog(null, error);

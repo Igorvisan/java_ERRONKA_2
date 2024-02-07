@@ -173,6 +173,7 @@ public class ModificarEmpleado extends JFrame {
 				}
 			}
 		});
+		
 		btnDisplay.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnDisplay.setBounds(802, 274, 155, 40);
 		contentPane.add(btnDisplay);

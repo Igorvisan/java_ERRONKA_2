@@ -155,7 +155,28 @@ public class EskaerakProcesatu extends JFrame {
 			}
 		});
 		btnEnProceso.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnEnProceso.setBounds(350, 211, 181, 39);
+		btnEnProceso.setBounds(326, 211, 181, 39);
 		contentPane.add(btnEnProceso);
+		
+		JButton btnVerPedido = new JButton("VER PEDIDO");
+		btnVerPedido.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					int row = jTableEskaerak.getSelectedRow();
+		            String id_Cesta = jTableEskaerak.getModel().getValueAt(row, 0).toString();
+		            
+		            PedidosClientes pedidos1 = new PedidosClientes(id_Cesta);
+		            pedidos1.setVisible(true);
+		            
+		            
+				}catch(Exception error) {
+					JOptionPane.showMessageDialog(null, error);
+				}
+			}
+		});
+		btnVerPedido.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnVerPedido.setBounds(585, 212, 181, 39);
+		contentPane.add(btnVerPedido);
 	}
 }
