@@ -55,19 +55,32 @@ public class PedidosClientes extends JFrame {
 		jTablePedidos.setBounds(21, 328, 967, 360);
 		contentPane.add(jTablePedidos);
 		
+		
+		
 		cargarDetallesPedido(id_cesta);
 		
-		JButton btnNewButton = new JButton("CREAR FACTURA");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton.setBounds(787, 42, 201, 48);
-		contentPane.add(btnNewButton);
 		
 		JScrollPane scrollPane = new JScrollPane(jTablePedidos);
 		scrollPane.setBounds(21, 328, 967, 360);
 		contentPane.add(scrollPane);
+		
+		JButton btnNewButton = new JButton("CREAR FACTURA");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DefaultTableModel tableModel = cargarDetallesPedido(id_cesta);
+				
+				Langileak langile1 = new Langileak();
+				
+				langile1.factura(tableModel);
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnNewButton.setBounds(787, 42, 201, 48);
+		contentPane.add(btnNewButton);
 	}
 	
-	private void cargarDetallesPedido(String id_cesta) {
+	private DefaultTableModel cargarDetallesPedido(String id_cesta) {
 	    // Aquí realizamos la consulta SQL que involucra múltiples tablas
 	    
 	        ConnectionDB connectionDB = new ConnectionDB();   
@@ -104,6 +117,8 @@ public class PedidosClientes extends JFrame {
 	        }catch(Exception error) {
 	        	JOptionPane.showMessageDialog(null, error);
 	        }
+			return model;
 	        }
+	
 }
 	
