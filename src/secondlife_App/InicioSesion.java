@@ -13,6 +13,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 
@@ -105,8 +108,6 @@ public class InicioSesion extends JFrame {
 				}else if(Langileak.confirmarLangileArduraduna(usuario, contraseña) == false) {
 					JOptionPane.showMessageDialog(null, "Las creedenciales no son validas");
 				}
-				
-				
 			}
 		});
 		btnIniciarSesion.setBounds(237, 332, 156, 35);

@@ -129,7 +129,7 @@ public class Langileak extends Usuarioak {
 			float margin = 30;
 			
 			//Se calcula la posición vertical inicial para comenzar a escribir en la página. Esto se hace restando siete veces el margen desde la altura total de la página.
-			float y = hoja1.getMediaBox().getHeight() - (7 * margin);
+			float y = hoja1.getMediaBox().getHeight() - (10 * margin);
 			
 			//Se calcula el ancho disponible para la tabla restando dos veces el margen desde el ancho total de la página.
 			float tableAnchura = hoja1.getMediaBox().getWidth();
@@ -166,7 +166,7 @@ public class Langileak extends Usuarioak {
 				//: Inicia un nuevo bloque de texto en el flujo de contenido.
 				contenido.beginText();
 				contenido.setFont(PDType1Font.COURIER_BOLD, 10);
-				// Establece la posición de inicio del texto en las coordenadas (siguienteX, seguienteY).
+				//Establece la posición de inicio del texto en las coordenadas (siguienteX, seguienteY).
 				contenido.newLineAtOffset(siguienteX, seguienteY);
 				contenido.showText(cabezal);
 				contenido.endText();
@@ -181,7 +181,9 @@ public class Langileak extends Usuarioak {
 		        	//Comienza un bucle anidado para iterar sobre las columnas de cada fila.
 		            for (int j = 0; j < columnas; j++) {
 		            	//Obtiene el valor de la celda en la fila i y columna j del modelo de tabla y lo convierte en una cadena.
-		                String cellValue = tableModel.getValueAt(i, j).toString();
+		            	String a[] = tableModel.getValueAt(i, j).toString().split(":",2);
+		            	String cellValue = a[0];
+		                
 		                contenido.beginText();
 		                contenido.setFont(PDType1Font.HELVETICA, 8);
 		                contenido.newLineAtOffset(siguienteX, seguienteY);
@@ -190,7 +192,8 @@ public class Langileak extends Usuarioak {
 		                contenido.endText();
 		                siguienteX += colAnchura;
 		            }
-		        }
+		        } 
+		        
 		        contenido.close();
 		        String directorioDescargas = System.getProperty("user.home") + File.separator + "Downloads";
 	            String rutaArchivoPDF = directorioDescargas + File.separator + "factura.pdf";

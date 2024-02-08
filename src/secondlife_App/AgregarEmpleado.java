@@ -33,6 +33,7 @@ public class AgregarEmpleado extends JFrame {
 	private JTextField txtTelefonoa;
 	private Connection connectionDB;
 	private JTextField txtPasswd;
+	private JTextField txtSearch;
 
 	/**
 	 * Launch the application.
@@ -246,6 +247,58 @@ public class AgregarEmpleado extends JFrame {
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword.setBounds(81, 331, 78, 13);
 		contentPane.add(lblPassword);
+		
+		txtSearch = new JTextField();
+		txtSearch.setColumns(10);
+		txtSearch.setBounds(298, 438, 134, 19);
+		contentPane.add(txtSearch);
+		
+		JButton btnSearch = new JButton("BUSCAR");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
+				ConnectionDB connectionDB = new ConnectionDB();
+				Connection conexion = connectionDB.obtenerConexion();
+				
+				String searchEmployee = txtSearch.getText();
+				
+				String orden = "SELECT * FROM second_life.langileak WHERE Izena LIKE '%" + searchEmployee + "'";
+				
+				DefaultTableModel model = new DefaultTableModel();
+				
+				model.addColumn("Id_Langilea");
+				model.addColumn("NAN");
+				model.addColumn("Izena");
+				model.addColumn("Abizena");
+				model.addColumn("Korreoa");
+				model.addColumn("Jaiotze data");
+				model.addColumn("Telofono Zenbakia");
+				model.addColumn("Langile arduraduna");
+				model.addColumn("Administratzailea");
+				model.addColumn("langile_normala");
+				model.addColumn("password");
+				
+				tableLangileak.setModel(model);
+				String[] array = new String[11];
+				
+				try {
+					
+					PreparedStatement statement = conexion.prepareStatement(orden);
+					ResultSet resultado = statement.executeQuery(orden);
+					
+					while(resultado.next()) {
+						for (int i = 0; i<11; i++) {
+							array[i] = resultado.getString(i+1); // No existe la posicion 0
+						}
+						model.addRow(array);						
+					}
+					
+				}catch(Exception error) {
+					error.printStackTrace();
+				}
+			}
+		});
+		btnSearch.setBounds(203, 437, 85, 21);
+		contentPane.add(btnSearch);
 		
 
 		

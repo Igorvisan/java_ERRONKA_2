@@ -47,6 +47,7 @@ public class ModificarProducto extends JFrame {
 	private JCheckBox chckbxTendentziak;
 	private JCheckBox chckbxStock;
 	private JTextField txtId;
+	private JTextField txtSearch;
 
 	/**
 	 * Launch the application.
@@ -257,6 +258,57 @@ public class ModificarProducto extends JFrame {
 		lblID.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblID.setBounds(844, 31, 116, 28);
 		contentPane.add(lblID);
+		
+		txtSearch = new JTextField();
+		txtSearch.setBounds(610, 127, 176, 34);
+		contentPane.add(txtSearch);
+		txtSearch.setColumns(10);
+		
+		JButton btnSearch = new JButton("BUSCAR");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConnectionDB connectionDB = new ConnectionDB();
+				Connection conexion = connectionDB.obtenerConexion();
+				
+				String searchItem = txtSearch.getText();
+				
+				String orden = "SELECT * FROM second_life.biltegia WHERE Marca LIKE '%" +searchItem+ "'";
+				
+				DefaultTableModel model = new DefaultTableModel();
+				model.addColumn("Id");
+				model.addColumn("Produktua");
+				model.addColumn("Prezioa");
+				model.addColumn("Marca");
+				model.addColumn("Stock");
+				model.addColumn("Stock_kantitatea");
+				model.addColumn("Produktuaren_KG");
+				model.addColumn("Iritzia");
+				model.addColumn("Deskribapena");
+				model.addColumn("imagenes");
+				model.addColumn("tendencia");
+
+				jTableBiltegia.setModel(model);
+
+				String[] array = new String[11];
+
+				try {
+					PreparedStatement statement = conexion.prepareStatement(orden);
+					ResultSet result = statement.executeQuery(orden);
+
+					while (result.next()) {
+						for (int i = 0; i < 11; i++) {
+							array[i] = result.getString(i + 1);
+						}
+						model.addRow(array);
+					}
+				} catch (Exception error) {
+					error.printStackTrace();
+				}
+			}
+		});
+		btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnSearch.setBounds(810, 127, 137, 34);
+		contentPane.add(btnSearch);
 
 		btnGoBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

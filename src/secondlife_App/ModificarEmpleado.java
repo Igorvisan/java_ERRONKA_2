@@ -34,6 +34,8 @@ public class ModificarEmpleado extends JFrame {
 	private JTextField txtTelefonoZenbakia;
 	private JTextField txtPassword;
 	private JTextField txtId;
+	private JTextField txtSearch;
+	private JButton btnSearch;
 
 	/**
 	 * Launch the application.
@@ -239,7 +241,60 @@ public class ModificarEmpleado extends JFrame {
 		
 		txtId = new JTextField();
 		txtId.setColumns(10);
-		txtId.setBounds(757, 111, 149, 40);
+		txtId.setBounds(757, 59, 149, 40);
 		contentPane.add(txtId);
+		
+		txtSearch = new JTextField();
+		txtSearch.setColumns(10);
+		txtSearch.setBounds(641, 171, 149, 40);
+		contentPane.add(txtSearch);
+		
+		btnSearch = new JButton("BUSCAR");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConnectionDB connectionDB = new ConnectionDB();
+				Connection conexion = connectionDB.obtenerConexion();
+				
+				String searchEmployee = txtSearch.getText();
+				
+				String orden = "SELECT * FROM second_life.langileak WHERE Izena LIKE '%" + searchEmployee + "'";
+				
+				DefaultTableModel model = new DefaultTableModel();
+				
+				model.addColumn("Id_Langilea");
+				model.addColumn("NAN");
+				model.addColumn("Izena");
+				model.addColumn("Abizena");
+				model.addColumn("Korreoa");
+				model.addColumn("Jaiotze data");
+				model.addColumn("Telofono Zenbakia");
+				model.addColumn("Langile arduraduna");
+				model.addColumn("Administratzailea");
+				model.addColumn("langile_normala");
+				model.addColumn("password");
+				
+				table.setModel(model);
+				String[] array = new String[11];
+				
+				try {
+					
+					PreparedStatement statement = conexion.prepareStatement(orden);
+					ResultSet resultado = statement.executeQuery(orden);
+					
+					while(resultado.next()) {
+						for (int i = 0; i<11; i++) {
+							array[i] = resultado.getString(i+1); // No existe la posicion 0
+						}
+						model.addRow(array);						
+					}
+					
+				}catch(Exception error) {
+					error.printStackTrace();
+				}
+			}
+		});
+		btnSearch.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnSearch.setBounds(815, 171, 155, 40);
+		contentPane.add(btnSearch);
 	}
 }

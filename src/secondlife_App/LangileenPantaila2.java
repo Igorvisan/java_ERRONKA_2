@@ -62,11 +62,13 @@ public class LangileenPantaila2 extends JFrame {
         JButton btnGoBack = new JButton("CERRAR SESION");
         btnGoBack.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		
+         		dispose();
+        		
         		InicioSesion logIn = new InicioSesion();
         		
-        		logIn.setVisible(true);
-        		
-        		dispose();
+        		logIn.setVisible(true);      		
+       
         	}
         });
         btnGoBack.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -98,7 +100,7 @@ public class LangileenPantaila2 extends JFrame {
         	}
         });
         btnModificarProducto.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        btnModificarProducto.setBounds(357, 367, 297, 106);
+        btnModificarProducto.setBounds(361, 386, 297, 106);
         contentPane.add(btnModificarProducto);
     }
 

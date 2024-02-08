@@ -34,7 +34,7 @@ public class LangileenPantaila1 extends JFrame {
      */
     public LangileenPantaila1() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 697, 521);
+        setBounds(100, 100, 1026, 555);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -54,7 +54,7 @@ public class LangileenPantaila1 extends JFrame {
                 dispose();
 			}
         });
-        btnAgregarEmpleado.setBounds(95, 165, 209, 79);
+        btnAgregarEmpleado.setBounds(89, 151, 209, 79);
         btnAgregarEmpleado.setFont(new Font("Tahoma", Font.PLAIN, 18));
         contentPane.add(btnAgregarEmpleado);
 
@@ -75,7 +75,7 @@ public class LangileenPantaila1 extends JFrame {
 			}
         });
         btnGoBack.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        btnGoBack.setBounds(542, 436, 131, 38);
+        btnGoBack.setBounds(871, 470, 131, 38);
         contentPane.add(btnGoBack);
 
         // Botón para eliminar empleado
@@ -95,7 +95,7 @@ public class LangileenPantaila1 extends JFrame {
 			}
         });
         btnBorrarEmpleado.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        btnBorrarEmpleado.setBounds(409, 165, 209, 79);
+        btnBorrarEmpleado.setBounds(385, 151, 209, 79);
         contentPane.add(btnBorrarEmpleado);
         
         JButton btnModificarEmpleado = new JButton("MODIFICAR EMPLEADO");
@@ -104,7 +104,7 @@ public class LangileenPantaila1 extends JFrame {
         	}
         });
         btnModificarEmpleado.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        btnModificarEmpleado.setBounds(241, 268, 239, 79);
+        btnModificarEmpleado.setBounds(680, 151, 239, 79);
         contentPane.add(btnModificarEmpleado);
     }
 }

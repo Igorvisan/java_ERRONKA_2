@@ -55,8 +55,6 @@ public class PedidosClientes extends JFrame {
 		jTablePedidos.setBounds(21, 328, 967, 360);
 		contentPane.add(jTablePedidos);
 		
-		
-		
 		cargarDetallesPedido(id_cesta);
 		
 		
