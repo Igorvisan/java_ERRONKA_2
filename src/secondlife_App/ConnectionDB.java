@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class ConnectionDB {
-	private static final String url = "jdbc:mysql://localhost:3306/notak";
+	private static final String url = "jdbc:mysql://localhost:3306/second_life";
 	private static final String controlador = "com.mysql.cj.jdbc.Driver";
 	private static final String usuario = "root";
 	private static final String password = "1WMG2023";
